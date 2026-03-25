@@ -1,7 +1,5 @@
 
-  # Minimalistic Portfolio Website
-
-  This is a code bundle for Minimalistic Portfolio Website. The original project is available at https://www.figma.com/design/jpQ0uHOghDk8aQNVtRjIW1/Minimalistic-Portfolio-Website.
+  # Thanh Luong Porfolio
 
   ## Running the code
 
