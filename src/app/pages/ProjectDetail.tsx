@@ -128,7 +128,7 @@ export function ProjectDetail() {
       note: "35 people, one room, and the first version of mamī",
       cta: "field recording",
       href: "https://www.instagram.com/p/DPKeDMzkuLz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-      video: "/no.%201%20the%20first%20pour%20slide%201.mov",
+      video: "/no.%201%20portfolio%20cover.mov",
     },
     {
       date: "October 2025",
