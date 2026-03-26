@@ -65,6 +65,7 @@ export function ProjectDetail() {
   const galleryImages = project.galleryImages ?? [project.image];
   const isMami = project.id === "mami-matcha";
   const isMooshie = project.id === "mooshie-co";
+  const isCham = project.id === "cham-studio";
   const mamiChannels = [
     {
       label: "Instagram",
@@ -91,8 +92,8 @@ export function ProjectDetail() {
     ? mamiChannels
     : project.id === "cham-studio"
       ? [
-          { label: "Instagram", href: project.link, state: "live" },
           { label: "Depop", href: "https://www.depop.com/chamstudio/", state: "live" },
+          { label: "Instagram", href: project.link, state: "live" },
         ]
       : [
           { label: "Website", href: project.link, state: "live" },
@@ -470,7 +471,7 @@ a vision boarding matcha cafe`,
                         className="group flex h-[5.3rem] w-[8.1rem] flex-col items-center justify-center rounded-[999px] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(245,240,233,0.72))] text-center text-[var(--foreground)] transition-all duration-300 hover:-translate-y-0.5"
                       >
                         <div className="mb-1.5 text-[rgba(0,0,0,0.58)]">
-                          <ChannelIcon label={channel.label} />
+                          <ChannelIcon label={channel.iconLabel ?? channel.label} />
                         </div>
                         <span
                           className="text-[0.72rem] leading-[1] tracking-[-0.03em] text-[var(--foreground)]"
@@ -485,7 +486,7 @@ a vision boarding matcha cafe`,
                         className="flex h-[5.3rem] w-[8.1rem] flex-col items-center justify-center rounded-[999px] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(245,240,233,0.72))] px-3 text-center text-[var(--foreground)]"
                       >
                         <div className={`mb-1.5 text-[rgba(0,0,0,0.58)] ${channel.label === "Website" ? "translate-y-[5px]" : ""}`}>
-                          <ChannelIcon label={channel.label} />
+                          <ChannelIcon label={channel.iconLabel ?? channel.label} />
                         </div>
                         <div className={`flex flex-col items-center ${channel.label === "Website" ? "translate-y-[5px]" : ""}`}>
                           <span
@@ -547,6 +548,18 @@ a vision boarding matcha cafe`,
                     </div>
                   </a>
                 </div>
+              ) : isCham ? (
+                <div className="mx-auto mt-5 w-full max-w-[44%] overflow-hidden rounded-[2.1rem] border border-[rgba(75,67,61,0.12)] bg-[rgba(255,255,255,0.4)]">
+                  <video
+                    src="/cham%20studio%20cover.mov"
+                    className="aspect-video w-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                  />
+                </div>
               ) : (
                 <div className="mx-auto mt-5 w-full max-w-[44%] overflow-hidden rounded-[2.1rem] border border-[rgba(75,67,61,0.12)] bg-[rgba(255,255,255,0.4)]">
                   <img
@@ -588,7 +601,7 @@ a vision boarding matcha cafe`,
                         className="group flex h-[5.3rem] w-[8.1rem] flex-col items-center justify-center rounded-[999px] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(245,240,233,0.72))] text-center text-[var(--foreground)] transition-all duration-300 hover:-translate-y-0.5"
                       >
                         <div className="mb-1.5 text-[rgba(0,0,0,0.58)]">
-                          <ChannelIcon label={channel.label} />
+                          <ChannelIcon label={channel.iconLabel ?? channel.label} />
                         </div>
                         <span
                           className="text-[0.72rem] leading-[1] tracking-[-0.03em] text-[var(--foreground)]"
@@ -603,7 +616,7 @@ a vision boarding matcha cafe`,
                         className="flex h-[5.3rem] w-[8.1rem] flex-col items-center justify-center rounded-[999px] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(245,240,233,0.72))] px-3 text-center text-[var(--foreground)]"
                       >
                         <div className={`mb-1.5 text-[rgba(0,0,0,0.58)] ${channel.label === "Website" ? "translate-y-[5px]" : ""}`}>
-                          <ChannelIcon label={channel.label} />
+                          <ChannelIcon label={channel.iconLabel ?? channel.label} />
                         </div>
                         <div className={`flex flex-col items-center ${channel.label === "Website" ? "translate-y-[5px]" : ""}`}>
                           <span
@@ -701,8 +714,8 @@ a vision boarding matcha cafe`,
                 </div>
               </div>
             ) : (
-              <div className="grid gap-5 md:grid-cols-2">
-                {galleryImages.slice(1).map((image) => (
+              <div className={`grid gap-5 ${isCham ? "mx-auto w-full max-w-[84rem] md:grid-cols-3" : "md:grid-cols-2"}`}>
+                {galleryImages.slice(1).map((image, index) => (
                   <div
                     key={image}
                     className="overflow-hidden rounded-[2rem] border border-[rgba(75,67,61,0.12)] bg-[rgba(255,255,255,0.35)]"
@@ -718,7 +731,20 @@ a vision boarding matcha cafe`,
                         preload="auto"
                       />
                     ) : (
-                      <img src={image} alt={project.name} className="aspect-[1.05/1] h-full w-full object-cover" />
+                      <img
+                        src={image}
+                        alt={project.name}
+                        className="aspect-[1.05/1] h-full w-full object-cover"
+                        style={
+                          isCham && index === 2
+                            ? { objectPosition: "center 0px" }
+                            : isCham && index === 4
+                              ? { objectPosition: "center -225px" }
+                            : isCham && index === 5
+                              ? { objectPosition: "center -200px" }
+                              : undefined
+                        }
+                      />
                     )}
                   </div>
                 ))}

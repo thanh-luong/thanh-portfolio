@@ -140,6 +140,7 @@ export function Home() {
               {homeProjects.map((project, index) => {
                 const isMami = project.id === "mami-matcha";
                 const isMooshie = project.id === "mooshie-co";
+                const isCham = project.id === "cham-studio";
                 const description = isMami
                   ? "A San Francisco-based matcha pop-up designed as an immersive, community-driven space. Each event blends drinks, spatial flow, and storytelling into a shared experience."
                   : isMooshie
@@ -175,6 +176,16 @@ export function Home() {
                           src="/mooshie%20portfolio%20cover.jpg"
                           alt={project.name}
                           className="h-[24rem] w-full object-cover md:h-[28rem]"
+                        />
+                      ) : isCham ? (
+                        <video
+                          src="/cham%20studio%20cover.mov"
+                          className="h-[24rem] w-full object-cover md:h-[28rem]"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          preload="auto"
                         />
                       ) : (
                         <img

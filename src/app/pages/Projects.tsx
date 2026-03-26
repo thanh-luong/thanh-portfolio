@@ -52,6 +52,7 @@ export function Projects() {
               : images[0];
           const isMami = project.id === "mami-matcha";
           const isMooshie = project.id === "mooshie-co";
+          const isCham = project.id === "cham-studio";
 
           return (
             <motion.article
@@ -83,6 +84,16 @@ export function Projects() {
                       src="/mooshie%20portfolio%20cover.jpg"
                       alt={project.name}
                       className="absolute inset-0 h-full w-full object-cover transition-all duration-700 group-hover:scale-[1.03]"
+                    />
+                  ) : isCham ? (
+                    <video
+                      src="/cham%20studio%20cover.mov"
+                      className="absolute inset-0 h-full w-full object-cover transition-all duration-700 group-hover:scale-[1.03]"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
                     />
                   ) : images.map((image, imageIndex) => {
                     const visible = image === activeImage;
