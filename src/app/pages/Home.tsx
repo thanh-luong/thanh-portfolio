@@ -41,6 +41,13 @@ export function Home() {
         </div>
         <div className="pointer-events-none absolute inset-0 z-10">
           <img
+            src="/self%20starter%20postits.png"
+            alt="Self starter notes"
+            className={`absolute right-[calc(6%-530px)] top-[calc(20%-310px)] w-[clamp(158rem,252vw,283.5rem)] transition-opacity duration-200 ${
+              activeTitle === "self-starter," ? "opacity-100" : "opacity-0"
+            }`}
+          />
+          <img
             src="/world%20builder%20post%20its.png"
             alt="World builder notes"
             className={`absolute right-[calc(6%+60px)] top-[calc(20%-110px)] w-[clamp(15.246rem,24.3936vw,27.4428rem)] transition-opacity duration-200 ${
