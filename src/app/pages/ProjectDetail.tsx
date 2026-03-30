@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router";
 import { featuredProjects, getFeaturedProjectById } from "../data/portfolio";
+import type { MamiTimelineItem } from "../types/mami";
 
 function ChannelIcon({ label }: { label: string }) {
   if (label === "Instagram") {
@@ -103,7 +104,7 @@ export function ProjectDetail() {
     "I create spaces where people can step in and feel something.\nmamī matcha is a San Francisco-based pop-up where drinks, environment, and storytelling come together to create shared experiences.",
     "I’ve hosted a series of pop-ups bringing together 30–100 guests at a time, each one designed from concept to execution, including menu, spatial flow, visual identity, and content. The goal is not just to serve matcha, but to create a space people remember being part of.",
   ];
-  const mamiTimeline = [
+  const mamiTimeline: MamiTimelineItem[] = [
     {
       date: "February 2025",
       title: "the beginning",
@@ -119,7 +120,7 @@ export function ProjectDetail() {
       note:
         "there was a version of this that never happened. this is what almost stopped me.",
       cta: "journal entry",
-      href: "https://www.instagram.com/p/DNmPqN4yPzq/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      to: "/work/mami-matcha/the-part-i-dont-usually-show",
       image: "/1.PNG",
       imagePosition: "center -90px",
     },
@@ -180,7 +181,7 @@ a vision boarding matcha cafe`,
       ].filter(Boolean),
     },
   ];
-  const renderMamiFeatureCard = (item: (typeof mamiTimeline)[number], key: string) => (
+  const renderMamiFeatureCard = (item: MamiTimelineItem, key: string) => (
     <motion.article
       key={key}
       initial={{ opacity: 0, y: 18 }}
@@ -190,7 +191,49 @@ a vision boarding matcha cafe`,
       whileHover={{ scale: 1.03, y: -4 }}
       className="flex min-h-[20rem] flex-col overflow-hidden rounded-[2rem] border border-[rgba(75,67,61,0.12)] bg-transparent"
     >
-      {item.href ? (
+      {item.to ? (
+        <Link
+          to={item.to}
+          className="flex min-h-[20rem] flex-1 flex-col bg-transparent"
+        >
+          {item.video ? (
+            <video
+              src={item.video}
+              className="h-[14.75rem] w-full object-cover"
+              style={item.videoPosition ? { objectPosition: item.videoPosition } : undefined}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+            />
+          ) : item.image ? (
+            <img
+              src={item.image}
+              alt={item.title}
+              className="h-[14.75rem] w-full object-cover"
+              style={item.imagePosition ? { objectPosition: item.imagePosition } : undefined}
+            />
+          ) : (
+            <div className="h-[14.75rem] w-full bg-[linear-gradient(135deg,rgba(210,201,188,0.65),rgba(243,236,224,0.95))]" />
+          )}
+          <div className="flex flex-1 flex-col bg-[rgba(255,255,255,0.5)] px-5 py-2.5">
+            <h3
+              className="text-[1.2rem] font-extralight leading-[0.95] tracking-[-0.04em]"
+              style={{ fontFamily: '"Times New Roman", Georgia, serif' }}
+            >
+              {item.title}
+            </h3>
+            <p className="mt-1.5 whitespace-pre-line text-sm leading-5 text-[var(--muted-foreground)]">
+              {item.note}
+            </p>
+            <div className="mt-auto pt-2 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.18em] text-[var(--foreground)] underline underline-offset-[0.28em]">
+              {item.cta}
+              <ArrowUpRight size={14} />
+            </div>
+          </div>
+        </Link>
+      ) : item.href ? (
         <a
           href={item.href}
           target="_blank"
