@@ -1,7 +1,9 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import {
+  type CarouselApi,
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -11,18 +13,94 @@ import {
 
 const journalImages = [
   {
-    src: "/1.PNG",
-    alt: "Journal entry collage",
+    src: "/GCF%20the%20reality%20of%20chasing%20a%20dream/GCF%201.png",
+    alt: "GCF slide 1",
+    type: "image",
     objectPosition: "center center",
   },
   {
-    src: "/art%20vs%20artist.PNG",
-    alt: "Art versus artist reflection",
-    objectPosition: "center -90px",
+    src: "/GCF%20the%20reality%20of%20chasing%20a%20dream/GCF%202.png",
+    alt: "GCF slide 2",
+    type: "image",
+    objectPosition: "center center",
+  },
+  {
+    src: "/GCF%20the%20reality%20of%20chasing%20a%20dream/GCF%203.png",
+    alt: "GCF slide 3",
+    type: "image",
+    objectPosition: "center center",
+  },
+  {
+    src: "/GCF%20the%20reality%20of%20chasing%20a%20dream/GCF%204.png",
+    alt: "GCF slide 4",
+    type: "image",
+    objectPosition: "center center",
+  },
+  {
+    src: "/GCF%20the%20reality%20of%20chasing%20a%20dream/GCF%205.png",
+    alt: "GCF slide 5",
+    type: "image",
+    objectPosition: "center center",
+  },
+  {
+    src: "/GCF%20the%20reality%20of%20chasing%20a%20dream/GCF%20%206.mp4",
+    alt: "GCF slide 6 video",
+    type: "video",
+    objectPosition: "center center",
+  },
+  {
+    src: "/GCF%20the%20reality%20of%20chasing%20a%20dream/GCF%207.png",
+    alt: "GCF slide 7",
+    type: "image",
+    objectPosition: "center center",
+  },
+  {
+    src: "/GCF%20the%20reality%20of%20chasing%20a%20dream/GCF%208.png",
+    alt: "GCF slide 8",
+    type: "image",
+    objectPosition: "center center",
+  },
+  {
+    src: "/GCF%20the%20reality%20of%20chasing%20a%20dream/GCF%209.png",
+    alt: "GCF slide 9",
+    type: "image",
+    objectPosition: "center center",
+  },
+  {
+    src: "/GCF%20the%20reality%20of%20chasing%20a%20dream/GCF%2010.png",
+    alt: "GCF slide 10",
+    type: "image",
+    objectPosition: "center center",
+  },
+  {
+    src: "/GCF%20the%20reality%20of%20chasing%20a%20dream/GCF%2011.png",
+    alt: "GCF slide 11",
+    type: "image",
+    objectPosition: "center center",
   },
 ];
 
 export function MamiJournalEntry() {
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    if (!carouselApi) return;
+
+    const updateSelectedIndex = () => {
+      setSelectedIndex(carouselApi.selectedScrollSnap());
+    };
+
+    updateSelectedIndex();
+    carouselApi.on("select", updateSelectedIndex);
+    carouselApi.on("reInit", updateSelectedIndex);
+
+    return () => {
+      carouselApi.off("select", updateSelectedIndex);
+      carouselApi.off("reInit", updateSelectedIndex);
+    };
+  }, [carouselApi]);
+
   return (
     <div className="min-h-screen bg-[linear-gradient(180deg,#f7f4ee_0%,#f4ede2_100%)] text-[var(--foreground)]">
       <motion.div
@@ -39,8 +117,8 @@ export function MamiJournalEntry() {
           Back to mamī matcha
         </Link>
 
-        <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] lg:items-start">
-          <div className="max-w-[30rem]">
+        <div className="mt-10">
+          <div className="max-w-[68rem]">
             <div className="text-[0.78rem] uppercase tracking-[0.18em] text-[rgba(75,67,61,0.62)]">
               April 2025
             </div>
@@ -50,29 +128,44 @@ export function MamiJournalEntry() {
             >
               the part i don&apos;t usually show
             </h1>
-            <p className="mt-6 max-w-[28rem] text-base leading-7 text-[var(--muted-foreground)]">
-              I used AI as a thinking tool to explore uncertainty, generate alternate perspectives, and
-              refine the structure of the story. Rather than centering AI visually, I focused on how it
-              shaped my process, allowing me to translate a personal decision into a cohesive creative
-              artifact.
+            <p className="mt-6 max-w-[62rem] text-base leading-7 text-[var(--muted-foreground)]">
+              I created a visual narrative about choosing between two paths, using real footage and
+              journal-style notes. I used Google&apos;s AI tools as a thinking tool to explore uncertainty,
+              generate alternate perspectives, and refine the structure of the story. Rather than centering
+              AI visually, I focused on how it shaped my process, allowing me to translate a personal
+              decision into a cohesive creative artifact.
             </p>
           </div>
 
-          <div className="rounded-[2.4rem] border border-[rgba(75,67,61,0.12)] bg-[rgba(255,255,255,0.42)] px-6 py-8 md:px-10 md:py-10">
+          <div className="mt-10 rounded-[2.4rem] border border-[rgba(75,67,61,0.12)] bg-[rgba(255,255,255,0.42)] px-6 py-8 md:px-10 md:py-10">
             <Carousel
               opts={{ loop: true, align: "start" }}
-              className="mx-auto w-full max-w-[34rem]"
+              setApi={setCarouselApi}
+              className="mx-auto w-full max-w-[36rem]"
             >
               <CarouselContent>
                 {journalImages.map((image) => (
                   <CarouselItem key={image.src}>
                     <div className="overflow-hidden rounded-[2rem] border border-[rgba(75,67,61,0.12)] bg-[rgba(255,255,255,0.5)]">
-                      <img
-                        src={image.src}
-                        alt={image.alt}
-                        className="h-[26rem] w-full object-cover md:h-[32rem]"
-                        style={{ objectPosition: image.objectPosition }}
-                      />
+                      {image.type === "video" ? (
+                        <video
+                          src={image.src}
+                          className="aspect-[1080/1350] w-full object-cover"
+                          style={{ objectPosition: image.objectPosition }}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          preload="auto"
+                        />
+                      ) : (
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          className="aspect-[1080/1350] w-full object-cover"
+                          style={{ objectPosition: image.objectPosition }}
+                        />
+                      )}
                     </div>
                   </CarouselItem>
                 ))}
@@ -80,28 +173,12 @@ export function MamiJournalEntry() {
               <CarouselPrevious className="left-3 top-[calc(100%+1.25rem)] h-11 w-11 -translate-y-0 border-[rgba(75,67,61,0.12)] bg-[rgba(255,255,255,0.92)] text-[var(--foreground)] hover:bg-white disabled:opacity-35" />
               <CarouselNext className="right-3 top-[calc(100%+1.25rem)] h-11 w-11 -translate-y-0 border-[rgba(75,67,61,0.12)] bg-[rgba(255,255,255,0.92)] text-[var(--foreground)] hover:bg-white disabled:opacity-35" />
             </Carousel>
-
-            <div className="mt-16 grid gap-5 md:grid-cols-2">
-              <div className="rounded-[1.8rem] bg-[rgba(247,244,238,0.92)] px-5 py-5">
-                <div className="text-[0.72rem] uppercase tracking-[0.18em] text-[rgba(75,67,61,0.58)]">
-                  journal note
-                </div>
-                <p
-                  className="mt-3 text-[1.28rem] font-extralight leading-[1.1] tracking-[-0.04em]"
-                  style={{ fontFamily: '"Times New Roman", Georgia, serif' }}
-                >
-                  some ideas come in loudly. the hard part is staying with them long enough to understand
-                  what they&apos;re asking for.
-                </p>
+            <div className="mt-16 text-center">
+              <div className="text-[0.72rem] uppercase tracking-[0.18em] text-[rgba(75,67,61,0.58)]">
+                journal note
               </div>
-              <div className="rounded-[1.8rem] bg-[rgba(247,244,238,0.92)] px-5 py-5">
-                <div className="text-[0.72rem] uppercase tracking-[0.18em] text-[rgba(75,67,61,0.58)]">
-                  what stayed
-                </div>
-                <p className="mt-3 text-sm leading-6 text-[var(--muted-foreground)]">
-                  even when i didn&apos;t know the final shape yet, there was something worth protecting in the
-                  early version. this page is for that in-between stage.
-                </p>
+              <div className="mt-2 text-[0.8rem] uppercase tracking-[0.18em] text-[rgba(75,67,61,0.66)]">
+                no. {selectedIndex + 1}
               </div>
             </div>
           </div>

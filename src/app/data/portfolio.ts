@@ -29,7 +29,7 @@ export const featuredProjects = [
     category: "Fashion / Curation / Taste",
     year: "2020-2022",
     description:
-      "I explore taste through curation.\nCham is an online vintage bag studio rooted in personal style, where each piece was selected, styled, and photographed as part of a growing visual identity.\n\nWorking on Cham became a way of learning my eye in public, understanding what resonates, and shaping a point of view through what I chose to put into the world.",
+      "I explore taste through curation.\nCham is an online vintage bag studio rooted in personal style, where each piece was selected, styled, and photographed as part of a growing visual identity, generating $30,000+ in revenue within 6 months and reaching an audience of over 5,000.\n\nWorking on Cham became a way of learning my eye in public, understanding what resonates, and shaping a point of view through what I chose to put into the world.",
     palette: "Walnut, cream, oxblood",
     tools: ["Curator", "Creative Direction", "Stylist", "Visual Design"],
     image: "/cham%20studio%20cover.mov",
@@ -53,7 +53,7 @@ export const featuredProjects = [
     category: "Product / Creative Direction",
     year: "2021 - 2022",
     description:
-      "I turn ideas into something people can hold.\nAt its core, Mooshie is about encouraging young creators to take what exists in their imagination and bring it into the real world. What started as a childhood drawing became a product shared globally.\n\nEach piece explores how something small can carry comfort, connection, and meaning beyond the screen.",
+      "I turn ideas into something people can hold.\nAt its core, Mooshie is about encouraging young creators to take what exists in their imagination and bring it into the real world. What started as a childhood drawing became a product shared globally, with over 400 units sold through a self-built brand.\n\nEach piece explores how something small can carry comfort, connection, and meaning beyond the screen.",
     palette: "Powder blue, oat, blush",
     tools: ["Product Development", "Brand Identity", "Production", "Direct-to-Consumer", "Marketing"],
     image:

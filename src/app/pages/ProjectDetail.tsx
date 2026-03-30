@@ -121,8 +121,8 @@ export function ProjectDetail() {
         "there was a version of this that never happened. this is what almost stopped me.",
       cta: "journal entry",
       to: "/work/mami-matcha/the-part-i-dont-usually-show",
-      image: "/1.PNG",
-      imagePosition: "center -90px",
+      image: "/GCF%20the%20reality%20of%20chasing%20a%20dream/GCF%201.png",
+      imagePosition: "center -100px",
     },
     {
       date: "July 2025",
