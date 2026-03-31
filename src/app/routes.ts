@@ -21,6 +21,7 @@ export const router = createBrowserRouter([
       { path: "work/mami-matcha/the-part-i-dont-usually-show", Component: MamiJournalEntry },
       { path: "about", Component: About },
       { path: "about/gcf-2026-archive-room", Component: HiddenResume },
+      { path: "about/creativelab5-2026-resume", Component: HiddenResume },
       { path: "resume", Component: Resume },
       { path: "contact", Component: Contact },
     ],
